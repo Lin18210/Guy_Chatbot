@@ -1,0 +1,7 @@
+Flask
+gunicorn
+python-dotenv
+supabase
+openai
+Flask-Mail
+requests
