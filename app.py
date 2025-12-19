@@ -1,6 +1,7 @@
 import os
 import json
 import logging
+import re
 from flask import Flask, request, jsonify, render_template
 from supabase import create_client, Client
 from openai import OpenAI
@@ -226,10 +227,16 @@ def improve_ai():
         result_text, provider = generate_with_deepseek("You are an AI Optimization Engine. Return only valid JSON.", [], editor_prompt)
         
         # Cleanup potential markdown around JSON
-        if "```json" in result_text:
-            result_text = result_text.split("```json")[1].split("```")[0].strip()
-        elif "```" in result_text:
-            result_text = result_text.split("```")[1].split("```")[0].strip()
+        # Robust JSON extraction using regex
+        match = re.search(r"\{[\s\S]*\}", result_text)
+        if match:
+             result_text = match.group(0)
+        else:
+             # Fallback cleanup if regex fails (unlikely if valid JSON exists)
+             if "```json" in result_text:
+                 result_text = result_text.split("```json")[1].split("```")[0].strip()
+             elif "```" in result_text:
+                 result_text = result_text.split("```")[1].split("```")[0].strip()
 
         result = json.loads(result_text)
         

@@ -1,46 +1,54 @@
 # conversations.py
 
-# Extracted from Customer_support_data.csv (Shopzilla context)
+# Training data for Guy Heart Photography
+# STYLE: Simple, Direct. FAST BOOKING (Ask all at once).
 
 sample_data = [
     {
-        # TRAINING GOAL: Clean, spaced-out pricing list
-        "client_sequence": "What are your 2024 rates?",
+        "client_sequence": "Hi, what services do you offer?",
         "chat_history": [],
-        "real_consultant_reply": """Here is my 2024 pricing! 📸
+        "real_consultant_reply": """Hello. We offer:
+1. Wedding Photography (Full & Half Day)
+2. Pre-Wedding / Engagement Shoots
+3. Cinematic Storytelling
 
-        **Engagement / Pre-Wedding**
-        • Bangkok (2-3 hrs): 25,000 THB
-        • Destination (Thailand): 35,000–50,000 THB
-
-        **Wedding Coverage**
-        • Half-Day (6 hrs): 60,000 THB
-        • Full-Day (10 hrs): 90,000 THB
-
-        **Popular Add-ons**
-        • Second Photographer: +20,000 THB
-        • Drone Footage: +10,000 THB
-
-        Let me know your date and I can send a formal quote! ✨"""
+Please let me know which service you are interested in."""
     },
     {
-        "client_sequence": "I am very disappointed with Shopzilla. The issue was not resolved. The customer care executive was polite enough though he was not able to resolve the issue. But I am appalled at the utter lack of responsibility and accountability of Shopzilla in providing tracking services.",
+        "client_sequence": "I want to book the Full Day wedding package.",
         "chat_history": [],
-        "real_consultant_reply": "We are truly sorry to hear about your frustration. We understand how important it is to track your order accurately. We value your feedback on our accountability and are currently investigating the tracking delay with our logistics partner. Please share your Order ID so we can personally oversee this."
+        # NEW BEHAVIOR: Ask for everything at once
+        "real_consultant_reply": """To proceed with the booking, please provide the following details:
+1. Name
+2. Phone Number
+3. Email Address
+4. Desired Date & Time"""
     },
     {
-        "client_sequence": "You have played around with this order. Without taking customers concern, how can you plan the resolution/pick-up of the products? Don't you have brain to check with the customers availability? Order placed on 8 July and 19 July damaged product delivered. I'm still awaiting for the resolution and refund.",
+        # Scenario where user gives partial info, AI asks for the REST all at once
+        "client_sequence": "I want to book for Dec 12th. My name is John.",
         "chat_history": [],
-        "real_consultant_reply": "We sincerely apologize for the delay and the damaged product you received. This is certainly not the experience we want for you. We have escalated your pickup request to our logistics team to ensure it happens within 24 hours. Your refund will be processed immediately upon pickup."
+        "real_consultant_reply": """Thank you, John. To complete the booking for Dec 12th, I still need:
+- Phone Number
+- Email Address
+
+Please provide these details."""
     },
     {
-        "client_sequence": "Even in the guarantee period you have to contact the supplier to reduce the duration of resolve the issue.",
+        "client_sequence": "How much is a pre-wedding shoot?",
         "chat_history": [],
-        "real_consultant_reply": "We understand your concern regarding the warranty process. While we facilitate the connection with suppliers for authorized service, we are happy to step in and expedite this for you. Let us contact the supplier on your behalf to speed up the resolution."
+        "real_consultant_reply": """Our Pre-Wedding Session starts from 25,000 THB.
+This includes:
+- 2 Hours of coverage
+- 1 Photographer
+- 3 Outfits/Locations
+- 100 Retouched Images
+
+Would you like to book this service?"""
     },
     {
-        "client_sequence": "I selected for English language preference but it's goes into Hindi channel. But customer service executive doesn't understand English properly",
+        "client_sequence": "I'm really nervous about posing.",
         "chat_history": [],
-        "real_consultant_reply": "We apologize for the language mismatch. We have updated your profile preferences to ensure you are connected with our English-speaking support team for all future interactions. How can we assist you today?"
-    },
+        "real_consultant_reply": """That is normal. Our photographer will guide you to ensure you look natural. You do not need experience."""
+    }
 ]
